@@ -1,0 +1,33 @@
+/* FONTS */
+
+/* Figtree - latin */
+@font-face {
+    font-family: Figtree;
+    font-style: normal;
+    font-weight: 300 900;
+    font-display: swap;
+    src: url('./assets/fonts/Figtree.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* STYLES */
+
+.wrapper {
+    /* DESIGN TOKENS */
+    --color-white: hsl(0deg 0% 100%);
+    --color-gray: hsl(0deg 0% 50%);
+    --color-black: hsl(0deg 0% 7%);
+    --color-primary: hsl(47deg 88% 63%);
+    --font-weight-normal: 400;
+    --font-weight-medium: 600;
+    --font-weight-bold: 800;
+    --font-family-sans-serif: "Figtree", sans-serif;
+
+    /* STYLES  */
+    height: 100%;
+    padding: 20px;
+    display: grid;
+    place-content: center;
+    background-color: var(--color-primary);
+    font-family: var(--font-family-sans-serif);
+}
