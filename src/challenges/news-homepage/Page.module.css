@@ -1,0 +1,47 @@
+@value mobileAndSmaller from "./Breakpoints.module.css";
+
+/* FONTS */
+
+/* Inter - latin */
+@font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('./assets/fonts/Inter.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* STYLES */
+
+.wrapper {
+    /* DESIGN TOKENS */
+    --color-off-white: hsl(36deg 100% 99%);
+    --color-grey-blue: hsl(233deg 8% 79%);
+    --color-dark-grey-blue: hsl(236deg 13% 42%);
+    --color-dark-blue: hsl(240deg 100% 5%);
+    --color-soft-orange: hsl(35deg 77% 62%);
+    --color-soft-red: hsl(5deg 85% 63%);
+    --font-weight-normal: 400;
+    --font-weight-medium: 700;
+    --font-weight-bold: 800;
+    --font-family-sans-serif: "Inter", sans-serif;
+
+    /* STYLES  */
+    min-height: 100%;
+    background-color: var(--color-off-white);
+    font-size: calc(15rem / 16);
+    color: var(--color-dark-grey-blue);
+    font-family: var(--font-family-sans-serif);
+    padding-bottom: 72px;
+}
+
+.max-width-wrapper {
+    max-width: min(100%, calc(1110px + 32px * 2));
+    margin-inline: auto;
+    padding-inline: 32px;
+
+    @media(mobileAndSmaller) {
+        padding-inline: 16px;
+    }
+}

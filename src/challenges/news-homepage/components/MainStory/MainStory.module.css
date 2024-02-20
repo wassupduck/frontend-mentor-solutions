@@ -1,0 +1,69 @@
+@value mobileAndSmaller from "../../Breakpoints.module.css";
+
+.wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template:
+        'image image' auto
+        'heading lead' 1fr
+        / 1fr 1fr;
+    gap: 28px;
+
+    @media mobileAndSmaller {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.story-picture {
+    grid-area: image;
+
+    @media mobileAndSmaller {
+        grid-area: unset;
+    }
+}
+
+.story-image {
+    object-fit: cover;
+}
+
+.story-title {
+    grid-area: heading;
+    font-size: calc(58rem / 16);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark-blue);
+    line-height: 1;
+
+    @media mobileAndSmaller {
+        grid-area: unset;
+    }
+}
+
+.lead-section {
+    grid-area: lead;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 28px;
+
+    @media mobileAndSmaller {
+        grid-area: unset;
+    }
+}
+
+.read-more-button {
+    display: block;
+    width: fit-content;
+    color: var(--color-off-white);
+    background-color: var(--color-soft-red);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    padding: 12px 36px;
+}
+
+.read-more-button:hover {
+    background-color: var(--color-dark-blue);
+    color: var(--color-off-white);
+}
