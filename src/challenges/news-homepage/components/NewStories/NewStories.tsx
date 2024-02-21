@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./NewStories.module.css";
 
 const NEW_STORIES = [
@@ -35,7 +36,7 @@ function NewStory({ story }: { story: { title: string; lead: string } }) {
   return (
     <li className={styles.newStoryItem}>
       <h3 className={styles.newStoryTitle}>
-        <a href="">{story.title}</a>
+        <Link to="">{story.title}</Link>
       </h3>
       <p className={styles.newStoryLead}>{story.lead}</p>
     </li>

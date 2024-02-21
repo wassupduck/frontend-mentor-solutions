@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./TopStory.module.css";
 
 export type TopStoryProps = {
@@ -20,7 +21,7 @@ export default function TopStory({ rank, story }: TopStoryProps) {
       <div className={styles.content}>
         <p className={styles.rank}>{String(rank).padStart(2, "0")}</p>
         <h3 className={styles.title}>
-          <a href={story.href}>{story.title}</a>
+          <Link to={story.href}>{story.title}</Link>
         </h3>
         <p className={styles.lead}>{story.lead}</p>
       </div>

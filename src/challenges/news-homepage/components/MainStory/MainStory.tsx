@@ -1,5 +1,6 @@
 import styles from "./MainStory.module.css";
 import breakpoints from "../../Breakpoints.module.css";
+import { Link } from "react-router-dom";
 
 export type MainStoryProps = {
   story: {
@@ -31,9 +32,9 @@ export default function MainStory({ story }: MainStoryProps) {
       <h1 className={styles.title}>{story.title}</h1>
       <section className={styles.leadSection}>
         <p>{story.lead}</p>
-        <a className={styles.readMoreButton} href={story.href}>
+        <Link className={styles.readMoreButton} to={story.href}>
           Read more
-        </a>
+        </Link>
       </section>
     </article>
   );

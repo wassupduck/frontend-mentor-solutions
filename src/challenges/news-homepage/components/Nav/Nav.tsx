@@ -7,6 +7,7 @@ import menuIconUrl from "../../assets/images/icon-menu.svg";
 import menuCloseIconUrl from "../../assets/images/icon-menu-close.svg";
 import VisuallyHidden from "../../../../components/VisuallyHidden";
 import UnstyledButton from "../../../../components/UnstyledButton";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
@@ -67,29 +68,29 @@ function NavList() {
   return (
     <ul className={styles.navList}>
       <li>
-        <a className={styles.navLink} href="">
+        <Link className={styles.navLink} to="">
           Home
-        </a>
+        </Link>
       </li>
       <li>
-        <a className={styles.navLink} href="">
+        <Link className={styles.navLink} to="">
           New
-        </a>
+        </Link>
       </li>
       <li>
-        <a className={styles.navLink} href="">
+        <Link className={styles.navLink} to="">
           Popular
-        </a>
+        </Link>
       </li>
       <li>
-        <a className={styles.navLink} href="">
+        <Link className={styles.navLink} to="">
           Trending
-        </a>
+        </Link>
       </li>
       <li>
-        <a className={styles.navLink} href="">
+        <Link className={styles.navLink} to="">
           Categories
-        </a>
+        </Link>
       </li>
     </ul>
   );
