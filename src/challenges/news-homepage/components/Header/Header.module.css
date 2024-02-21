@@ -10,23 +10,3 @@
         padding-block: 28px 32px;
     }
 }
-
-.nav {
-    @media tabletAndSmaller {
-        display: none;
-    }
-}
-
-.nav-list {
-    display: flex;
-    gap: 40px;
-}
-
-.nav-item {
-    color: inherit;
-    text-decoration: none;
-}
-
-.nav-item:hover {
-    color: var(--color-soft-red);
-}

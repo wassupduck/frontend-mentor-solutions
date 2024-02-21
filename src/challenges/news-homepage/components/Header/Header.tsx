@@ -1,6 +1,10 @@
 import styles from "./Header.module.css";
 
+import { Link } from "react-router-dom";
+
 import logoImageUrl from "../../assets/images/logo.svg";
+
+import Nav from "../Nav";
 
 export default function Header() {
   return (
@@ -12,39 +16,9 @@ export default function Header() {
 }
 
 function Logo() {
-  return <img alt="" src={logoImageUrl} />;
-}
-
-function Nav() {
   return (
-    <nav className={styles.nav}>
-      <ul className={styles.navList}>
-        <li>
-          <a className={styles.navItem} href="/">
-            Home
-          </a>
-        </li>
-        <li>
-          <a className={styles.navItem} href="/">
-            New
-          </a>
-        </li>
-        <li>
-          <a className={styles.navItem} href="/">
-            Popular
-          </a>
-        </li>
-        <li>
-          <a className={styles.navItem} href="/">
-            Trending
-          </a>
-        </li>
-        <li>
-          <a className={styles.navItem} href="/">
-            Categories
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <Link to=".">
+      <img alt="" src={logoImageUrl} />
+    </Link>
   );
 }
