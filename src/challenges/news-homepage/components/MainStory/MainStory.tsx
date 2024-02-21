@@ -17,18 +17,18 @@ export type MainStoryProps = {
 export default function MainStory({ story }: MainStoryProps) {
   return (
     <article className={styles.wrapper}>
-      <picture className={styles.storyPicture}>
+      <picture className={styles.picture}>
         <source
           media={breakpoints.mobileAndSmaller}
           srcSet={story.image.mobileSrc}
         />
         <img
-          className={styles.storyImage}
+          className={styles.image}
           alt={story.image.alt}
           src={story.image.src}
         />
       </picture>
-      <h1 className={styles.storyTitle}>{story.title}</h1>
+      <h1 className={styles.title}>{story.title}</h1>
       <section className={styles.leadSection}>
         <p>{story.lead}</p>
         <a className={styles.readMoreButton} href={story.href}>

@@ -3,18 +3,19 @@
 .wrapper {
     display: grid;
     grid-template-areas:
-        'main-story main-story new-stories'
-        'top-stories top-stories top-stories';
+        "main-story main-story new-stories"
+        "top-stories top-stories top-stories";
     grid-template-columns: 1fr 1fr 1fr;
     gap: 72px 28px;
 
     @media tabletAndSmaller {
         grid-template-areas:
-            'main-story'
-            'new-stories'
-            'top-stories';
+            "main-story"
+            "new-stories"
+            "top-stories";
         grid-template-columns: unset;
         gap: 64px;
+        column-gap: unset;
     }
 }
 

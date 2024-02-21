@@ -41,14 +41,6 @@
     color: var(--color-soft-red);
 }
 
-.mobile-nav-button {
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
 .mobile-menu-overlay {
     position: fixed;
     inset: 0;
@@ -59,11 +51,6 @@
 .mobile-menu-close-button {
     position: absolute;
     right: calc(32px + 4px);
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
 
     @media mobileAndSmaller {
         right: calc(16px + 4px);

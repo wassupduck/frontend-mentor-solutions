@@ -1,7 +1,5 @@
 import styles from "./Header.module.css";
 
-import { Link } from "react-router-dom";
-
 import logoImageUrl from "../../assets/images/logo.svg";
 
 import Nav from "../Nav";
@@ -17,8 +15,8 @@ export default function Header() {
 
 function Logo() {
   return (
-    <Link to=".">
+    <a href="">
       <img alt="" src={logoImageUrl} />
-    </Link>
+    </a>
   );
 }

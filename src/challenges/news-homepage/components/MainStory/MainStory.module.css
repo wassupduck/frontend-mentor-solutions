@@ -15,7 +15,7 @@
     }
 }
 
-.story-picture {
+.picture {
     grid-area: image;
 
     @media mobileAndSmaller {
@@ -23,13 +23,13 @@
     }
 }
 
-.story-image {
+.image {
     object-fit: cover;
     height: 300px;
     width: 100%;
 }
 
-.story-title {
+.title {
     grid-area: heading;
     font-size: calc(58rem / 16);
     font-weight: var(--font-weight-bold);

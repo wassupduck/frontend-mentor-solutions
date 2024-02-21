@@ -15,7 +15,7 @@ const MAIN_STORY = {
     mobileSrc: web3MobileImageUrl,
     alt: "3D render of woodern shapes",
   },
-  href: "/",
+  href: "",
 };
 
 export default function MainGrid() {

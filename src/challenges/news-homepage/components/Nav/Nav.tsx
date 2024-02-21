@@ -5,6 +5,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 
 import menuIconUrl from "../../assets/images/icon-menu.svg";
 import menuCloseIconUrl from "../../assets/images/icon-menu-close.svg";
+import VisuallyHidden from "../../../../components/VisuallyHidden";
+import UnstyledButton from "../../../../components/UnstyledButton";
 
 export default function Nav() {
   return (
@@ -28,13 +30,10 @@ function MobileNav() {
 
   return (
     <div className={styles.mobileNav}>
-      <button
-        type="button"
-        className={styles.mobileNavButton}
-        onClick={() => setOpen(true)}
-      >
+      <UnstyledButton type="button" onClick={() => setOpen(true)}>
         <img src={menuIconUrl} />
-      </button>
+        <VisuallyHidden>Navigation Menu</VisuallyHidden>
+      </UnstyledButton>
       <MobileMenu open={open} onOpenChange={setOpen} />
     </div>
   );
@@ -52,8 +51,10 @@ function MobileMenu({
       <Dialog.Root open={open} onOpenChange={onOpenChange}>
         <Dialog.Overlay className={styles.mobileMenuOverlay} />
         <Dialog.Content className={styles.mobileMenuContent}>
-          <Dialog.Close className={styles.mobileMenuCloseButton}>
-            <img src={menuCloseIconUrl} />
+          <Dialog.Close asChild={true}>
+            <UnstyledButton className={styles.mobileMenuCloseButton}>
+              <img src={menuCloseIconUrl} />
+            </UnstyledButton>
           </Dialog.Close>
           <NavList />
         </Dialog.Content>
