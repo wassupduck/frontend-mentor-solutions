@@ -1,0 +1,33 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.rank {
+    color: var(--color-grey-blue);
+    font-size: 2rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+}
+
+.title {
+    color: var(--color-dark-blue);
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-medium);
+}
+
+.title:hover {
+    color: var(--color-soft-red);
+}
+
+.title>a {
+    text-decoration: none;
+    color: inherit;
+}

@@ -1,0 +1,32 @@
+@value tabletAndSmaller from "../../Breakpoints.module.css";
+
+.wrapper {
+    display: grid;
+    grid-template-areas:
+        "main-story main-story new-stories"
+        "top-stories top-stories top-stories";
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 72px 28px;
+
+    @media tabletAndSmaller {
+        grid-template-areas:
+            "main-story"
+            "new-stories"
+            "top-stories";
+        grid-template-columns: unset;
+        gap: 64px;
+        column-gap: unset;
+    }
+}
+
+.main-story-section {
+    grid-area: main-story;
+}
+
+.new-stories-section {
+    grid-area: new-stories;
+}
+
+.top-stories-section {
+    grid-area: top-stories;
+}

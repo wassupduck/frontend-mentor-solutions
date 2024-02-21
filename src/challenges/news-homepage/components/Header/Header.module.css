@@ -1,0 +1,12 @@
+@value tabletAndSmaller from "../../Breakpoints.module.css";
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 90px 54px;
+
+    @media tabletAndSmaller {
+        padding-block: 28px 32px;
+    }
+}
