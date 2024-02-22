@@ -1,3 +1,9 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-css-modules"]
+  "extends": ["stylelint-config-standard"],
+  "overrides": [
+    {
+      "files": ["src/**/*.module.css"],
+      "extends": ["stylelint-config-css-modules"]
+    }
+  ]
 }
