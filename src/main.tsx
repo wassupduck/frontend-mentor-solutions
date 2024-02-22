@@ -6,6 +6,7 @@ import "./global.module.css";
 
 import BlogPreviewCardChallangePage from "./challenges/blog-preview-card/Page";
 import NewsHomePagePage from "./challenges/news-homepage/Page";
+import InteractiveCommentsSectionPage from "./challenges/interactive-comments-section/Page";
 
 const router = createHashRouter([
   {
@@ -19,6 +20,10 @@ const router = createHashRouter([
   {
     path: "/news-homepage",
     element: <NewsHomePagePage />,
+  },
+  {
+    path: "/interactive-comments-section",
+    element: <InteractiveCommentsSectionPage />,
   },
 ]);
 
