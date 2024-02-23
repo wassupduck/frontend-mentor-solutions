@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: fit-content;
+    padding: 12px;
+    background-color: var(--color-neutral-very-light-grey);
+    border-radius: 8px;
+}
+
+.votes {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary-blue);
+}
