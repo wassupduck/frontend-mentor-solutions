@@ -1,7 +1,8 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
+    gap: 18px;
     width: fit-content;
     padding: 12px;
     background-color: var(--color-neutral-very-light-grey);

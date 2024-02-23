@@ -12,7 +12,7 @@ export default function CommentVotes() {
       <UnstyledButton>
         <img src={plusIconUrl} />
       </UnstyledButton>
-      <Votes>5</Votes>
+      <Votes>12</Votes>
       <UnstyledButton>
         <img src={minusIconUrl} />
       </UnstyledButton>
