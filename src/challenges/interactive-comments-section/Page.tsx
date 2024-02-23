@@ -1,11 +1,10 @@
-import { styled } from "@linaria/react";
+import styles from "./Page.module.css";
+
+import styled from "../../styled";
+// import Comment from "./components/Comment";
 
 export default function Page() {
-  return <Heading>Interactive Comments Section</Heading>;
+  return <Wrapper>{/* <Comment /> */}</Wrapper>;
 }
 
-const Heading = styled.h1`
-  font-size: 2rem;
-  font-weight: 600;
-  color: deepskyblue;
-`;
+const Wrapper = styled("div", styles.wrapper);

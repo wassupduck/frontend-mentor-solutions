@@ -1,0 +1,19 @@
+.wrapper {
+    /* DESIGN TOKENS */
+
+    /* Primary colors */
+    --color-primary-blue: hsl(238deg 40% 52%);
+    --color-primary-red: hsl(358deg 79% 66%);
+    --color-primary-light-blue: hsl(239deg 57% 85%);
+    --color-primary-light-red: hsl(357deg 100% 86%);
+
+    /* Neutral colors */
+    --color-neutral-dark-blue: hsl(212deg 24% 26%);
+    --color-neutral-grey-blue: hsl(211deg 10% 45%);
+    --color-neutral-light-grey: hsl(223deg 19% 93%);
+    --color-neutral-very-light-grey: hsl(228deg 33% 97%);
+    --color-white: hsl(0deg 0% 100%);
+
+    /* DESIGN TOKENS */
+    color: var(--color-neutral-grey-blue);
+}
