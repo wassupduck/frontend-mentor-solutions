@@ -1,0 +1,6 @@
+.wrapper {
+    width: 100%;
+    padding: 24px;
+    background-color: var(--color-white);
+    border-radius: 8px;
+}

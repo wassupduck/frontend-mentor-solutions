@@ -6,9 +6,12 @@ import Comment from "./components/Comment";
 export default function Page() {
   return (
     <Wrapper>
-      <Comment />
+      <MaxWidthWrapper>
+        <Comment />
+      </MaxWidthWrapper>
     </Wrapper>
   );
 }
 
 const Wrapper = styled("div", styles.wrapper);
+const MaxWidthWrapper = styled("div", styles.maxWidthWrapper);

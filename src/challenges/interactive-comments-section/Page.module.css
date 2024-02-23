@@ -35,6 +35,15 @@
     --font-family-sans-serif: "Rubik", sans-serif;
 
     /* STYLES */
+    min-height: 100%;
+    padding-block: 64px;
     color: var(--color-neutral-grey-blue);
     font-family: var(--font-family-sans-serif);
+    background-color: var(--color-neutral-very-light-grey);
+}
+
+.max-width-wrapper {
+    max-width: min(100%, calc(732px + 32px * 2));
+    margin-inline: auto;
+    padding-inline: 32px;
 }
