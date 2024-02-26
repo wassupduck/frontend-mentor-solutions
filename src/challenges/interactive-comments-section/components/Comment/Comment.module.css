@@ -32,6 +32,7 @@
 .user-name {
     color: var(--color-neutral-dark-blue);
     font-weight: var(--font-weight-medium);
+    text-wrap: nowrap;
 }
 
 .user-profile-image {
@@ -39,15 +40,33 @@
     height: 32px;
 }
 
+.action-button-group {
+    display: flex;
+    gap: calc(26rem/ 16);
+}
+
 .action-button {
     display: flex;
     align-items: center;
     gap: 6px;
-    color: var(--color-primary-blue);
+    color: var(--action-button-color);
     font-weight: var(--font-weight-medium);
 }
 
 .action-button-icon {
     width: 16px;
-    min-width: 16px;
+}
+
+.you-tag {
+    margin-inline-start: calc(2rem / 16);
+    padding: 2px 4px;
+    font-size: 0.8rem;
+    color: var(--color-white);
+    background-color: var(--color-primary-blue);
+    border-radius: 2px;
+}
+
+.you-tag>span {
+    display: inline-block;
+    transform: translateY(-1px);
 }

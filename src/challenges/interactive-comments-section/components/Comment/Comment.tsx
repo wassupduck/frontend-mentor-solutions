@@ -4,30 +4,61 @@ import styled from "../../../../styled";
 import CommentVotes from "../CommentVotes";
 import UnstyledButton from "../../../../components/UnstyledButton";
 
-import userAvatarPngUrl from "../../assets/images/avatars/image-amyrobson.png";
-import userAvatarWebpUrl from "../../assets/images/avatars/image-amyrobson.webp";
 import replyIconUrl from "../../assets/images/icon-reply.svg";
+import editIconUrl from "../../assets/images/icon-edit.svg";
+import deleteIconUrl from "../../assets/images/icon-delete.svg";
 
-export default function Comment() {
+interface CommentProps {
+  comment: {
+    id: number;
+    content: string;
+    createdAt: string;
+    score: number;
+    replyingTo?: string;
+    user: {
+      image: {
+        png: string;
+        webp: string;
+      };
+      username: string;
+    };
+  };
+  byCurrentUser: boolean;
+}
+
+export default function Comment({ comment, byCurrentUser }: CommentProps) {
   return (
     <Wrapper>
-      <CommentVotes />
+      <CommentVotes voteCount={comment.score} />
       <Body>
         <TopRow>
           <MetadataGroup>
             <UserProfileImage>
-              <source srcSet={userAvatarWebpUrl} />
-              <img src={userAvatarPngUrl} alt="commentor's profile image" />
+              <source srcSet={comment.user.image.webp} />
+              <img
+                src={comment.user.image.png}
+                alt="commentor's profile image"
+              />
             </UserProfileImage>
-            <UserName>amyrobson</UserName>
-            <p>1 month ago</p>
+            <UserName>
+              {comment.user.username} {byCurrentUser && <YouTag />}
+            </UserName>
+            <p>{comment.createdAt}</p>
           </MetadataGroup>
-          <ActionButton />
+          <ActionButtonGroup>
+            {byCurrentUser ? (
+              <>
+                <DeleteButton />
+                <EditButton />
+              </>
+            ) : (
+              <ReplyButton />
+            )}
+          </ActionButtonGroup>
         </TopRow>
         <p>
-          Impressive! Though it seems the drag feature could be improved. But
-          overall it looks incredible. You've nailed the design and the
-          responsiveness at various breakpoints works really well.
+          {comment.replyingTo ?? <a>{comment.replyingTo}</a>}
+          {comment.content}
         </p>
       </Body>
     </Wrapper>
@@ -39,15 +70,52 @@ const Body = styled("div", styles.body);
 const TopRow = styled("div", styles.topRow);
 const MetadataGroup = styled("div", styles.metadataGroup);
 const UserName = styled("p", styles.userName);
+const YouTag = styled("span", styles.youTag, { children: <span>you</span> });
 const UserProfileImage = styled("picture", styles.userProfileImage);
+const ActionButtonGroup = styled("div", styles.actionButtonGroup);
 
-function ActionButton() {
+function ActionButton({
+  text,
+  iconUrl,
+  color,
+}: {
+  text: string;
+  iconUrl: string;
+  color: string;
+}) {
   return (
-    <UnstyledButton className={styles.actionButton}>
-      <ActionButtonIcon src={replyIconUrl} />
-      <p>Reply</p>
+    <UnstyledButton
+      style={{ "--action-button-color": color } as React.CSSProperties}
+      className={styles.actionButton}
+    >
+      <ActionButtonIcon src={iconUrl} />
+      <p>{text}</p>
     </UnstyledButton>
   );
 }
 
 const ActionButtonIcon = styled("img", styles.actionButtonIcon);
+
+const ReplyButton = () => (
+  <ActionButton
+    text="Reply"
+    iconUrl={replyIconUrl}
+    color="var(--color-primary-blue)"
+  />
+);
+
+const EditButton = () => (
+  <ActionButton
+    text="Edit"
+    iconUrl={editIconUrl}
+    color="var(--color-primary-blue)"
+  />
+);
+
+const DeleteButton = () => (
+  <ActionButton
+    text="Delete"
+    iconUrl={deleteIconUrl}
+    color="var(--color-primary-red)"
+  />
+);
