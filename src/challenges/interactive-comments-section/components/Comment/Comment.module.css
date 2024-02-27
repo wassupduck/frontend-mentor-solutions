@@ -50,6 +50,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px calc(26rem/ 16);
+
+    @media mobileAndSmaller {
+        gap: 8px 1rem;
+    }
 }
 
 .action-button {
@@ -93,7 +97,7 @@
     }
 }
 
-.desktopOnly {
+.desktop-only {
     display: block;
 
     @media mobileAndSmaller {

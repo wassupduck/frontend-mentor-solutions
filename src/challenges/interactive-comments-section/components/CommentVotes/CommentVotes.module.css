@@ -9,6 +9,7 @@
     padding: 12px;
     background-color: var(--color-neutral-very-light-grey);
     border-radius: 8px;
+    line-height: 1;
 
     @media mobileAndSmaller {
         flex-direction: row;
