@@ -41,4 +41,8 @@
     background-color: var(--color-primary-blue);
     text-transform: uppercase;
     border-radius: 6px;
+
+    &:active {
+        background-color: var(--color-primary-light-blue);
+    }
 }
