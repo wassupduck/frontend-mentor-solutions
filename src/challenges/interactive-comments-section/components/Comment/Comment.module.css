@@ -32,17 +32,16 @@
 .user-name {
     color: var(--color-neutral-dark-blue);
     font-weight: var(--font-weight-medium);
-    text-wrap: nowrap;
 }
 
 .user-profile-image {
     width: 32px;
-    height: 32px;
 }
 
 .action-button-group {
     display: flex;
-    gap: calc(26rem/ 16);
+    flex-wrap: wrap;
+    gap: 8px calc(26rem/ 16);
 }
 
 .action-button {
