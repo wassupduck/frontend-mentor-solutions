@@ -1,3 +1,5 @@
+@value mobileAndSmaller from "../../Breakpoints.module.css";
+
 .comment-wrapper {
     margin-bottom: 20px;
 }
@@ -6,4 +8,9 @@
     margin-left: 44px;
     border-left: 2px solid var(--color-neutral-light-grey);
     padding-left: 44px;
+
+    @media mobileAndSmaller {
+        margin-left: 0;
+        padding-left: 16px;
+    }
 }
