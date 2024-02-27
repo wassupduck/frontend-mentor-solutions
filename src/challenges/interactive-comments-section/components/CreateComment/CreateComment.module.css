@@ -1,3 +1,5 @@
+@value mobileAndSmaller from "../../Breakpoints.module.css";
+
 .wrapper {
     display: flex;
     align-items: flex-start;
@@ -6,6 +8,11 @@
     padding: 24px;
     background-color: var(--color-white);
     border-radius: 8px;
+
+    @media mobileAndSmaller {
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 }
 
 .user-profile-image {
@@ -19,6 +26,11 @@
     border: 1px solid var(--color-neutral-light-grey);
     border-radius: 6px;
     cursor: pointer;
+
+    @media mobileAndSmaller {
+        min-width: 100%;
+        order: -1;
+    }
 }
 
 .submit-button {
