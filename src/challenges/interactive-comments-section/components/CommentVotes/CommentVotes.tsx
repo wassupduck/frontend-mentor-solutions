@@ -18,7 +18,10 @@ export default function CommentVotes({ voteCount }: CommentVotesProps) {
       </VoteButton>
       <Votes>{voteCount}</Votes>
       <VoteButton>
-        <VoteButtonIcon src={minusIconUrl} />
+        <VoteButtonIcon
+          src={minusIconUrl}
+          className={styles.downVoteButtonIcon}
+        />
       </VoteButton>
     </Wrapper>
   );
