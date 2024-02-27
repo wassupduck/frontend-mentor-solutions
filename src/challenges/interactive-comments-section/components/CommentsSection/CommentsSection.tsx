@@ -9,15 +9,32 @@ export default function CommentsSection() {
   return (
     <section>
       {COMMENTS.map((comment) => (
-        <CommentWrapper key={comment.id}>
-          <Comment
-            comment={comment}
-            byCurrentUser={comment.user.username === CURRENT_USER.username}
-          />
-        </CommentWrapper>
+        <div>
+          <CommentWrapper key={comment.id}>
+            <Comment
+              comment={comment}
+              byCurrentUser={comment.user.username === CURRENT_USER.username}
+            />
+          </CommentWrapper>
+          {comment.replies.length > 0 && (
+            <Replies>
+              {comment.replies.map((comment) => (
+                <CommentWrapper key={comment.id}>
+                  <Comment
+                    comment={comment}
+                    byCurrentUser={
+                      comment.user.username === CURRENT_USER.username
+                    }
+                  />
+                </CommentWrapper>
+              ))}
+            </Replies>
+          )}
+        </div>
       ))}
     </section>
   );
 }
 
 const CommentWrapper = styled("div", styles.commentWrapper);
+const Replies = styled("div", styles.replies);
