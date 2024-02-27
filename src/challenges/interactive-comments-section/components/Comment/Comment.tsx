@@ -27,6 +27,7 @@ interface CommentProps {
 }
 
 export default function Comment({ comment, byCurrentUser }: CommentProps) {
+  console.log(comment.replyingTo);
   return (
     <Wrapper>
       <CommentVotes voteCount={comment.score} />
@@ -57,7 +58,7 @@ export default function Comment({ comment, byCurrentUser }: CommentProps) {
           </ActionButtonGroup>
         </TopRow>
         <p>
-          {comment.replyingTo ?? <a>{comment.replyingTo}</a>}
+          {comment.replyingTo && <ReplyingTo>@{comment.replyingTo}</ReplyingTo>}{" "}
           {comment.content}
         </p>
       </Body>
@@ -73,6 +74,7 @@ const UserName = styled("p", styles.userName);
 const YouTag = styled("span", styles.youTag, { children: <span>you</span> });
 const UserProfileImage = styled("picture", styles.userProfileImage);
 const ActionButtonGroup = styled("div", styles.actionButtonGroup);
+const ReplyingTo = styled("a", styles.replyingTo);
 
 function ActionButton({
   text,

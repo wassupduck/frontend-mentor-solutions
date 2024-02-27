@@ -70,3 +70,8 @@
     display: inline-block;
     transform: translateY(-1px);
 }
+
+.replying-to {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary-blue);
+}
