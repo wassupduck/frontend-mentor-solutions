@@ -7,8 +7,8 @@ console.log(AVATARS);
 
 export const CURRENT_USER = {
   image: {
-    png: "./images/avatars/image-juliusomo.png",
-    webp: "./images/avatars/image-juliusomo.webp",
+    png: AVATARS["./assets/images/avatars/image-juliusomo.png"],
+    webp: AVATARS["./assets/images/avatars/image-juliusomo.webp"],
   },
   username: "juliusomo",
 };

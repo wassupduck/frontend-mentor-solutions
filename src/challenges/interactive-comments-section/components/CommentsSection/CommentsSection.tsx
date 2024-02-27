@@ -4,6 +4,7 @@ import Comment from "../Comment";
 
 import { COMMENTS, CURRENT_USER } from "../../data";
 import styled from "../../../../styled";
+import CreateComment from "../CreateComment";
 
 export default function CommentsSection() {
   return (
@@ -32,6 +33,7 @@ export default function CommentsSection() {
           )}
         </div>
       ))}
+      <CreateComment currentUser={CURRENT_USER} />
     </section>
   );
 }

@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    padding: 24px;
+    background-color: var(--color-white);
+    border-radius: 8px;
+}
+
+.user-profile-image {
+    width: 44px;
+    height: 44px;
+}
+
+.text-area {
+    flex: 1;
+    min-height: 96px;
+    padding: 16px 24px;
+    border: 1px solid var(--color-neutral-light-grey);
+    border-radius: 6px;
+}
+
+.submit-button {
+    padding: 16px 32px;
+    color: var(--color-white);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    background-color: var(--color-primary-blue);
+    text-transform: uppercase;
+    border-radius: 6px;
+}
