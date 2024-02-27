@@ -30,7 +30,9 @@ export default function Comment({ comment, byCurrentUser }: CommentProps) {
   console.log(comment.replyingTo);
   return (
     <Wrapper>
-      <CommentVotes voteCount={comment.score} />
+      <DesktopOnly>
+        <CommentVotes voteCount={comment.score} />
+      </DesktopOnly>
       <Body>
         <TopRow>
           <MetadataGroup>
@@ -46,22 +48,19 @@ export default function Comment({ comment, byCurrentUser }: CommentProps) {
             </UserName>
             <p>{comment.createdAt}</p>
           </MetadataGroup>
-          <ActionButtonGroup>
-            {byCurrentUser ? (
-              <>
-                <DeleteButton />
-                <EditButton />
-              </>
-            ) : (
-              <ReplyButton />
-            )}
-          </ActionButtonGroup>
+          <DesktopOnly>
+            <ActionButtonGroup byCurrentUser={byCurrentUser} />
+          </DesktopOnly>
         </TopRow>
         <p>
           {comment.replyingTo && <ReplyingTo>@{comment.replyingTo}</ReplyingTo>}{" "}
           {comment.content}
         </p>
       </Body>
+      <MobileActions>
+        <CommentVotes voteCount={comment.score} />
+        <ActionButtonGroup byCurrentUser={byCurrentUser} />
+      </MobileActions>
     </Wrapper>
   );
 }
@@ -73,8 +72,11 @@ const MetadataGroup = styled("div", styles.metadataGroup);
 const UserName = styled("p", styles.userName);
 const YouTag = styled("span", styles.youTag, { children: <span>you</span> });
 const UserProfileImage = styled("picture", styles.userProfileImage);
-const ActionButtonGroup = styled("div", styles.actionButtonGroup);
+const ActionButtonGroupWrapper = styled("div", styles.actionButtonGroup);
 const ReplyingTo = styled("a", styles.replyingTo);
+const MobileActions = styled("div", styles.mobileActions);
+const DesktopOnly = styled("div", styles.desktopOnly);
+const ActionButtonIcon = styled("img", styles.actionButtonIcon);
 
 function ActionButton({
   text,
@@ -95,8 +97,6 @@ function ActionButton({
     </UnstyledButton>
   );
 }
-
-const ActionButtonIcon = styled("img", styles.actionButtonIcon);
 
 const ReplyButton = () => (
   <ActionButton
@@ -121,3 +121,19 @@ const DeleteButton = () => (
     color="var(--color-primary-red)"
   />
 );
+
+function ActionButtonGroup({ byCurrentUser }: { byCurrentUser: boolean }) {
+  // TODO: Improve props
+  return (
+    <ActionButtonGroupWrapper>
+      {byCurrentUser ? (
+        <>
+          <DeleteButton />
+          <EditButton />
+        </>
+      ) : (
+        <ReplyButton />
+      )}
+    </ActionButtonGroupWrapper>
+  );
+}
