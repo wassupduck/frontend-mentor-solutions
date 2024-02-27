@@ -13,16 +13,18 @@ interface CommentVotesProps {
 export default function CommentVotes({ voteCount }: CommentVotesProps) {
   return (
     <Wrapper>
-      <UnstyledButton>
-        <img src={plusIconUrl} />
-      </UnstyledButton>
+      <VoteButton>
+        <VoteButtonIcon src={plusIconUrl} />
+      </VoteButton>
       <Votes>{voteCount}</Votes>
-      <UnstyledButton>
-        <img src={minusIconUrl} />
-      </UnstyledButton>
+      <VoteButton>
+        <VoteButtonIcon src={minusIconUrl} />
+      </VoteButton>
     </Wrapper>
   );
 }
 
 const Wrapper = styled("div", styles.wrapper);
 const Votes = styled("span", styles.votes);
+const VoteButton = styled(UnstyledButton, styles.voteButton);
+const VoteButtonIcon = styled("img", "");

@@ -1,3 +1,5 @@
+@value mobileAndSmaller from "../../Breakpoints.module.css";
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -7,6 +9,21 @@
     padding: 12px;
     background-color: var(--color-neutral-very-light-grey);
     border-radius: 8px;
+
+    @media mobileAndSmaller {
+        flex-direction: row;
+        gap: 16px;
+    }
+}
+
+.vote-button {
+    --padding: 8px;
+    min-width: calc(var(--padding) * 2 + 16px);
+    padding: var(--padding);
+    margin: calc(var(--padding) * -1);
+    display: grid;
+    place-content: center;
+    grid-template-columns: 1fr;
 }
 
 .votes {
