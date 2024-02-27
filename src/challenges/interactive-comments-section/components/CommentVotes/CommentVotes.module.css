@@ -20,12 +20,23 @@
 .vote-button {
     --padding: 8px;
 
-    width: calc(var(--padding) * 2 + 12px);
-    height: calc(var(--padding) * 2 + 12px);
+    width: calc(var(--padding) * 2 + calc(12rem / 16));
+    height: calc(var(--padding) * 2 + calc(12rem / 16));
     padding: var(--padding);
     margin: calc(var(--padding) * -1);
-    display: grid;
-    place-content: center;
+}
+
+.vote-button-icon {
+    width: 100%;
+    height: 100%;
+    mask-size: 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: var(--color-primary-light-blue);
+
+    .vote-button:active & {
+        background-color: var(--color-primary-blue);
+    }
 }
 
 .down-vote-button-icon {

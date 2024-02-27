@@ -14,12 +14,20 @@ export default function CommentVotes({ voteCount }: CommentVotesProps) {
   return (
     <Wrapper>
       <VoteButton>
-        <VoteButtonIcon src={plusIconUrl} />
+        <VoteButtonIcon
+          style={{
+            maskImage: `url(${plusIconUrl})`,
+            WebkitMaskImage: `url(${plusIconUrl})`,
+          }}
+        />
       </VoteButton>
       <Votes>{voteCount}</Votes>
       <VoteButton>
         <VoteButtonIcon
-          src={minusIconUrl}
+          style={{
+            maskImage: `url(${minusIconUrl})`,
+            WebkitMaskImage: `url(${minusIconUrl})`,
+          }}
           className={styles.downVoteButtonIcon}
         />
       </VoteButton>
@@ -30,4 +38,4 @@ export default function CommentVotes({ voteCount }: CommentVotesProps) {
 const Wrapper = styled("div", styles.wrapper);
 const Votes = styled("span", styles.votes);
 const VoteButton = styled(UnstyledButton, styles.voteButton);
-const VoteButtonIcon = styled("img", "");
+const VoteButtonIcon = styled("div", styles.voteButtonIcon);
