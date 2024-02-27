@@ -76,23 +76,35 @@ const ActionButtonGroupWrapper = styled("div", styles.actionButtonGroup);
 const ReplyingTo = styled("a", styles.replyingTo);
 const MobileActions = styled("div", styles.mobileActions);
 const DesktopOnly = styled("div", styles.desktopOnly);
-const ActionButtonIcon = styled("img", styles.actionButtonIcon);
+const ActionButtonIcon = styled("div", styles.actionButtonIcon);
 
 function ActionButton({
   text,
   iconUrl,
   color,
+  activeColor,
 }: {
   text: string;
   iconUrl: string;
   color: string;
+  activeColor: string;
 }) {
   return (
     <UnstyledButton
-      style={{ "--action-button-color": color } as React.CSSProperties}
+      style={
+        {
+          "--action-button-color": color,
+          "--action-button-active-color": activeColor,
+        } as React.CSSProperties
+      }
       className={styles.actionButton}
     >
-      <ActionButtonIcon src={iconUrl} />
+      <ActionButtonIcon
+        style={{
+          maskImage: `url(${iconUrl})`,
+          WebkitMaskImage: `url(${iconUrl})`,
+        }}
+      />
       <p>{text}</p>
     </UnstyledButton>
   );
@@ -103,6 +115,7 @@ const ReplyButton = () => (
     text="Reply"
     iconUrl={replyIconUrl}
     color="var(--color-primary-blue)"
+    activeColor="var(--color-primary-light-blue)"
   />
 );
 
@@ -111,6 +124,7 @@ const EditButton = () => (
     text="Edit"
     iconUrl={editIconUrl}
     color="var(--color-primary-blue)"
+    activeColor="var(--color-primary-light-blue)"
   />
 );
 
@@ -119,6 +133,7 @@ const DeleteButton = () => (
     text="Delete"
     iconUrl={deleteIconUrl}
     color="var(--color-primary-red)"
+    activeColor="var(--color-primary-light-red)"
   />
 );
 
