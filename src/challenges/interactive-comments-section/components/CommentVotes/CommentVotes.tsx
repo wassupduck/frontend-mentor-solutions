@@ -5,30 +5,44 @@ import UnstyledButton from "../../../../components/UnstyledButton";
 import plusIconUrl from "../../assets/images/icon-plus.svg";
 import minusIconUrl from "../../assets/images/icon-minus.svg";
 import styled from "../../../../styled";
+import clsx from "clsx";
+import { Vote } from "./types";
 
-interface CommentVotesProps {
+export interface CommentVotesProps {
   voteCount: number;
+  currentVote?: Vote;
+  onUpVoteClick: () => void;
+  onDownVoteClick: () => void;
 }
 
-export default function CommentVotes({ voteCount }: CommentVotesProps) {
+export default function CommentVotes({
+  voteCount,
+  currentVote,
+  onUpVoteClick,
+  onDownVoteClick,
+}: CommentVotesProps) {
   return (
     <Wrapper>
-      <VoteButton>
+      <VoteButton onClick={onUpVoteClick}>
         <VoteButtonIcon
           style={{
             maskImage: `url(${plusIconUrl})`,
             WebkitMaskImage: `url(${plusIconUrl})`,
           }}
+          className={clsx(true && styles.active)}
         />
       </VoteButton>
       <Votes>{voteCount}</Votes>
-      <VoteButton>
+      <VoteButton onClick={onDownVoteClick}>
         <VoteButtonIcon
           style={{
             maskImage: `url(${minusIconUrl})`,
             WebkitMaskImage: `url(${minusIconUrl})`,
           }}
-          className={styles.downVoteButtonIcon}
+          className={clsx(
+            styles.downVoteButtonIcon,
+            currentVote === Vote.DOWN && styles.active
+          )}
         />
       </VoteButton>
     </Wrapper>

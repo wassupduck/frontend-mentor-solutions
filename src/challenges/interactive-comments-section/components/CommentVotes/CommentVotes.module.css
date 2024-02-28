@@ -34,8 +34,16 @@
     mask-position: center;
     background-color: var(--color-primary-light-blue);
 
-    .vote-button:active & {
+    &.active {
         background-color: var(--color-primary-blue);
+    }
+
+    .vote-button:active &:not(.active) {
+        background-color: var(--color-primary-blue);
+    }
+
+    .vote-button:active &.active {
+        background-color: var(--color-primary-light-blue);
     }
 }
 

@@ -27,12 +27,17 @@ interface CommentProps {
 }
 
 export default function Comment({ comment, byCurrentUser }: CommentProps) {
-  console.log(comment.replyingTo);
+  const commentVotes = (
+    <CommentVotes
+      voteCount={comment.score}
+      onUpVoteClick={() => {}}
+      onDownVoteClick={() => {}}
+    />
+  );
+  const actionButtonGroup = <ActionButtonGroup byCurrentUser={byCurrentUser} />;
   return (
     <Wrapper>
-      <DesktopOnly>
-        <CommentVotes voteCount={comment.score} />
-      </DesktopOnly>
+      <DesktopOnly>{commentVotes}</DesktopOnly>
       <Body>
         <TopRow>
           <MetadataGroup>
@@ -48,9 +53,7 @@ export default function Comment({ comment, byCurrentUser }: CommentProps) {
             </UserName>
             <p>{comment.createdAt}</p>
           </MetadataGroup>
-          <DesktopOnly>
-            <ActionButtonGroup byCurrentUser={byCurrentUser} />
-          </DesktopOnly>
+          <DesktopOnly>{actionButtonGroup}</DesktopOnly>
         </TopRow>
         <p>
           {comment.replyingTo && <ReplyingTo>@{comment.replyingTo}</ReplyingTo>}{" "}
@@ -58,8 +61,8 @@ export default function Comment({ comment, byCurrentUser }: CommentProps) {
         </p>
       </Body>
       <MobileActions>
-        <CommentVotes voteCount={comment.score} />
-        <ActionButtonGroup byCurrentUser={byCurrentUser} />
+        {commentVotes}
+        {actionButtonGroup}
       </MobileActions>
     </Wrapper>
   );
