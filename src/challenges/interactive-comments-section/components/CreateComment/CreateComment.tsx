@@ -9,9 +9,15 @@ export interface CreateCommentProps {
       webp: string;
     };
   };
+  isReply?: boolean;
+  onSubmit: () => void;
 }
 
-export default function CreateComment({ currentUser }: CreateCommentProps) {
+export default function CreateComment({
+  currentUser,
+  isReply = false,
+  onSubmit,
+}: CreateCommentProps) {
   return (
     <Wrapper>
       <UserProfileImage>
@@ -19,7 +25,9 @@ export default function CreateComment({ currentUser }: CreateCommentProps) {
         <img src={currentUser.image.png} alt="you're profile image" />
       </UserProfileImage>
       <TextArea placeholder="Add a comment..." />
-      <SubmitButton>Send</SubmitButton>
+      <SubmitButton onClick={onSubmit}>
+        {isReply ? "Reply" : "Send"}
+      </SubmitButton>
     </Wrapper>
   );
 }

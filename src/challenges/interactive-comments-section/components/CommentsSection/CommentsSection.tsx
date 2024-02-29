@@ -8,35 +8,34 @@ import CreateComment from "../CreateComment";
 
 export default function CommentsSection() {
   return (
-    <section>
+    <section className={styles.commentColumn}>
       {COMMENTS.map((comment) => (
-        <div>
-          <CommentWrapper key={comment.id}>
-            <Comment
-              comment={comment}
-              byCurrentUser={comment.user.username === CURRENT_USER.username}
-            />
-          </CommentWrapper>
-          {comment.replies.length > 0 && (
-            <Replies>
-              {comment.replies.map((comment) => (
-                <CommentWrapper key={comment.id}>
-                  <Comment
-                    comment={comment}
-                    byCurrentUser={
-                      comment.user.username === CURRENT_USER.username
-                    }
-                  />
-                </CommentWrapper>
-              ))}
-            </Replies>
-          )}
-        </div>
+        <CommentWithReplies comment={comment} key={comment.id} />
       ))}
-      <CreateComment currentUser={CURRENT_USER} />
+      <CreateComment currentUser={CURRENT_USER} onSubmit={() => {}} />
     </section>
   );
 }
 
-const CommentWrapper = styled("div", styles.commentWrapper);
+function CommentWithReplies({ comment }: { comment: (typeof COMMENTS)[0] }) {
+  return (
+    <>
+      <Comment
+        comment={comment}
+        byCurrentUser={comment.user.username === CURRENT_USER.username}
+      />
+      {comment.replies.length > 0 && (
+        <Replies className={styles.commentColumn}>
+          {comment.replies.map((comment) => (
+            <Comment
+              key={comment.id}
+              comment={comment}
+              byCurrentUser={comment.user.username === CURRENT_USER.username}
+            />
+          ))}
+        </Replies>
+      )}
+    </>
+  );
+}
 const Replies = styled("div", styles.replies);

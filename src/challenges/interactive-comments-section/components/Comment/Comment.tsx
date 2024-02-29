@@ -7,8 +7,9 @@ import UnstyledButton from "../../../../components/UnstyledButton";
 import replyIconUrl from "../../assets/images/icon-reply.svg";
 import editIconUrl from "../../assets/images/icon-edit.svg";
 import deleteIconUrl from "../../assets/images/icon-delete.svg";
+import { UnstyledButtonProps } from "../../../../components/UnstyledButton/UnstyledButton";
 
-interface CommentProps {
+export interface CommentProps {
   comment: {
     id: number;
     content: string;
@@ -24,9 +25,14 @@ interface CommentProps {
     };
   };
   byCurrentUser: boolean;
+  onReply?: () => void;
 }
 
-export default function Comment({ comment, byCurrentUser }: CommentProps) {
+export default function Comment({
+  comment,
+  byCurrentUser,
+  onReply,
+}: CommentProps) {
   const commentVotes = (
     <CommentVotes
       voteCount={comment.score}
@@ -34,7 +40,18 @@ export default function Comment({ comment, byCurrentUser }: CommentProps) {
       onDownVoteClick={() => {}}
     />
   );
-  const actionButtonGroup = <ActionButtonGroup byCurrentUser={byCurrentUser} />;
+  const actionButtonGroup = (
+    <ActionButtonGroup>
+      {byCurrentUser ? (
+        <>
+          <DeleteButton />
+          <EditButton />
+        </>
+      ) : (
+        <ReplyButton onClick={onReply} />
+      )}
+    </ActionButtonGroup>
+  );
   return (
     <Wrapper>
       <DesktopOnly>{commentVotes}</DesktopOnly>
@@ -75,23 +92,26 @@ const MetadataGroup = styled("div", styles.metadataGroup);
 const UserName = styled("p", styles.userName);
 const YouTag = styled("span", styles.youTag, { children: <span>you</span> });
 const UserProfileImage = styled("picture", styles.userProfileImage);
-const ActionButtonGroupWrapper = styled("div", styles.actionButtonGroup);
+const ActionButtonGroup = styled("div", styles.actionButtonGroup);
 const ReplyingTo = styled("a", styles.replyingTo);
 const MobileActions = styled("div", styles.mobileActions);
 const DesktopOnly = styled("div", styles.desktopOnly);
 const ActionButtonIcon = styled("div", styles.actionButtonIcon);
+
+interface ActionButtonProps extends UnstyledButtonProps {
+  text: string;
+  iconUrl: string;
+  color: string;
+  activeColor: string;
+}
 
 function ActionButton({
   text,
   iconUrl,
   color,
   activeColor,
-}: {
-  text: string;
-  iconUrl: string;
-  color: string;
-  activeColor: string;
-}) {
+  ...delegated
+}: ActionButtonProps) {
   return (
     <UnstyledButton
       style={
@@ -101,6 +121,7 @@ function ActionButton({
         } as React.CSSProperties
       }
       className={styles.actionButton}
+      {...delegated}
     >
       <ActionButtonIcon
         style={{
@@ -113,45 +134,32 @@ function ActionButton({
   );
 }
 
-const ReplyButton = () => (
+const ReplyButton = (props: Partial<ActionButtonProps>) => (
   <ActionButton
     text="Reply"
     iconUrl={replyIconUrl}
     color="var(--color-primary-blue)"
     activeColor="var(--color-primary-light-blue)"
+    {...props}
   />
 );
 
-const EditButton = () => (
+const EditButton = (props: Partial<ActionButtonProps>) => (
   <ActionButton
     text="Edit"
     iconUrl={editIconUrl}
     color="var(--color-primary-blue)"
     activeColor="var(--color-primary-light-blue)"
+    {...props}
   />
 );
 
-const DeleteButton = () => (
+const DeleteButton = (props: Partial<ActionButtonProps>) => (
   <ActionButton
     text="Delete"
     iconUrl={deleteIconUrl}
     color="var(--color-primary-red)"
     activeColor="var(--color-primary-light-red)"
+    {...props}
   />
 );
-
-function ActionButtonGroup({ byCurrentUser }: { byCurrentUser: boolean }) {
-  // TODO: Improve props
-  return (
-    <ActionButtonGroupWrapper>
-      {byCurrentUser ? (
-        <>
-          <DeleteButton />
-          <EditButton />
-        </>
-      ) : (
-        <ReplyButton />
-      )}
-    </ActionButtonGroupWrapper>
-  );
-}

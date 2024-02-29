@@ -1,9 +1,5 @@
 @value mobileAndSmaller from "../../Breakpoints.module.css";
 
-.comment-wrapper {
-    margin-bottom: 20px;
-}
-
 .replies {
     margin-left: 44px;
     border-left: 2px solid var(--color-neutral-light-grey);
@@ -13,4 +9,10 @@
         margin-left: 0;
         padding-left: 16px;
     }
+}
+
+.comment-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

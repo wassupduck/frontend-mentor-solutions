@@ -29,7 +29,7 @@ export default function CommentVotes({
             maskImage: `url(${plusIconUrl})`,
             WebkitMaskImage: `url(${plusIconUrl})`,
           }}
-          className={clsx(true && styles.active)}
+          className={clsx(currentVote === Vote.UP && styles.active)}
         />
       </VoteButton>
       <Votes>{voteCount}</Votes>
