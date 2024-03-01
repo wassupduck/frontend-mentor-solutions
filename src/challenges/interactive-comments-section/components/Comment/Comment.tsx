@@ -137,7 +137,9 @@ function EditComment({ initialContent, onCancel, onSave }: EditCommentProps) {
         {content}
       </TextArea>
       <EditCommentButtonGroup>
-        <Button onClick={onCancel}>Cancel</Button>
+        <Button variant="secondary" onClick={onCancel}>
+          Cancel
+        </Button>
         <Button onClick={() => onSave(content)}>Update</Button>
       </EditCommentButtonGroup>
     </>

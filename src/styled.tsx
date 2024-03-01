@@ -3,18 +3,15 @@ import React, { forwardRef } from "react";
 
 type Optional<T, K extends keyof T> = Omit<T, K> & Partial<T>;
 
-/* WARNING!
-
-This styled helper should NOT be used.
-
-Issues:
-- If two CSS rules have the same specificity
+/*
+WARNING:
+  If two CSS rules have the same specificity
   then the order of the rules in the stylesheet or HTML will
   determine which declarations have priority. When using the styled helper
-  to extend a functional component that already has styles applied/has a className
-  the actual styles applied will be unpredicatable and determined by the order of the class rules
-  in the bundled CSS.
-
+  to extend a component that already has styles applied (e.g via a HTML class)
+  then the final styles for the component will be determined by the order of the 
+  rules in the bundled CSS. This is usually determined by the import order
+  but this is fragile and should not be depended on.
 */
 function styled<
   T extends React.ElementType,
