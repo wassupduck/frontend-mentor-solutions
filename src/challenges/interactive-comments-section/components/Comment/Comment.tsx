@@ -45,13 +45,25 @@ export type CommentProps = CommentByCurrentUserProps | CommentByOtherUserProps;
 export function Comment({ comment, ...props }: CommentProps) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleUpdate = (newContent: string) => {
-    if (!props.isByCurrentUser) {
-      return;
-    }
-    props.onUpdate(newContent);
-    setIsEditing(false);
-  };
+  let content = (
+    <p>
+      {comment.replyingTo && <ReplyingTo>@{comment.replyingTo}</ReplyingTo>}{" "}
+      {comment.content}
+    </p>
+  );
+  if (props.isByCurrentUser && isEditing) {
+    const handleUpdate = (newContent: string) => {
+      props.onUpdate(newContent);
+      setIsEditing(false);
+    };
+    content = (
+      <EditComment
+        initialContent={comment.content}
+        onCancel={() => setIsEditing(false)}
+        onSave={handleUpdate}
+      />
+    );
+  }
 
   const commentVotes = (
     <CommentVotes
@@ -60,6 +72,7 @@ export function Comment({ comment, ...props }: CommentProps) {
       onDownVoteClick={() => {}}
     />
   );
+
   const actionButtonGroup = (
     <ActionButtonGroup>
       {props.isByCurrentUser ? (
@@ -72,6 +85,7 @@ export function Comment({ comment, ...props }: CommentProps) {
       )}
     </ActionButtonGroup>
   );
+
   return (
     <Wrapper>
       <DesktopOnly>{commentVotes}</DesktopOnly>
@@ -92,20 +106,7 @@ export function Comment({ comment, ...props }: CommentProps) {
           </MetadataGroup>
           <DesktopOnly>{actionButtonGroup}</DesktopOnly>
         </TopRow>
-        {isEditing ? (
-          <EditComment
-            initialContent={comment.content}
-            onCancel={() => setIsEditing(false)}
-            onSave={handleUpdate}
-          />
-        ) : (
-          <p>
-            {comment.replyingTo && (
-              <ReplyingTo>@{comment.replyingTo}</ReplyingTo>
-            )}{" "}
-            {comment.content}
-          </p>
-        )}
+        {content}
       </Body>
       <MobileActions>
         {commentVotes}
