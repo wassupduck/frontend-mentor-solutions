@@ -8,8 +8,10 @@ import replyIconUrl from "../../assets/images/icon-reply.svg";
 import editIconUrl from "../../assets/images/icon-edit.svg";
 import deleteIconUrl from "../../assets/images/icon-delete.svg";
 import { UnstyledButtonProps } from "../../../../components/UnstyledButton/UnstyledButton";
+import { useState } from "react";
+import Button from "../Button";
 
-export interface CommentProps {
+export interface CommentBaseProps {
   comment: {
     id: number;
     content: string;
@@ -24,15 +26,33 @@ export interface CommentProps {
       username: string;
     };
   };
-  byCurrentUser: boolean;
-  onReply?: () => void;
+  isByCurrentUser: boolean;
 }
 
-export default function Comment({
-  comment,
-  byCurrentUser,
-  onReply,
-}: CommentProps) {
+export interface CommentByCurrentUserProps extends CommentBaseProps {
+  isByCurrentUser: true;
+  onDelete: () => void;
+  onUpdate: (content: string) => void;
+}
+
+export interface CommentByOtherUserProps extends CommentBaseProps {
+  isByCurrentUser: false;
+  onReply: () => void;
+}
+
+export type CommentProps = CommentByCurrentUserProps | CommentByOtherUserProps;
+
+export function Comment({ comment, ...props }: CommentProps) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleUpdate = (newContent: string) => {
+    if (!props.isByCurrentUser) {
+      return;
+    }
+    props.onUpdate(newContent);
+    setIsEditing(false);
+  };
+
   const commentVotes = (
     <CommentVotes
       voteCount={comment.score}
@@ -42,13 +62,13 @@ export default function Comment({
   );
   const actionButtonGroup = (
     <ActionButtonGroup>
-      {byCurrentUser ? (
+      {props.isByCurrentUser ? (
         <>
-          <DeleteButton />
-          <EditButton />
+          <DeleteButton onClick={props.onDelete} />
+          <EditButton onClick={() => setIsEditing(true)} disabled={isEditing} />
         </>
       ) : (
-        <ReplyButton onClick={onReply} />
+        <ReplyButton onClick={props.onReply} />
       )}
     </ActionButtonGroup>
   );
@@ -66,22 +86,61 @@ export default function Comment({
               />
             </UserProfileImage>
             <UserName>
-              {comment.user.username} {byCurrentUser && <YouTag />}
+              {comment.user.username} {props.isByCurrentUser && <YouTag />}
             </UserName>
             <p>{comment.createdAt}</p>
           </MetadataGroup>
           <DesktopOnly>{actionButtonGroup}</DesktopOnly>
         </TopRow>
-        <p>
-          {comment.replyingTo && <ReplyingTo>@{comment.replyingTo}</ReplyingTo>}{" "}
-          {comment.content}
-        </p>
+        {isEditing ? (
+          <EditComment
+            initialContent={comment.content}
+            onCancel={() => setIsEditing(false)}
+            onSave={handleUpdate}
+          />
+        ) : (
+          <p>
+            {comment.replyingTo && (
+              <ReplyingTo>@{comment.replyingTo}</ReplyingTo>
+            )}{" "}
+            {comment.content}
+          </p>
+        )}
       </Body>
       <MobileActions>
         {commentVotes}
         {actionButtonGroup}
       </MobileActions>
     </Wrapper>
+  );
+}
+
+export const CommentByCurrentUser = (
+  props: Omit<CommentByCurrentUserProps, "isByCurrentUser">
+) => <Comment isByCurrentUser={true} {...props} />;
+
+export const CommentByOtherUser = (
+  props: Omit<CommentByOtherUserProps, "isByCurrentUser">
+) => <Comment isByCurrentUser={false} {...props} />;
+
+interface EditCommentProps {
+  initialContent: string;
+  onCancel: () => void;
+  onSave: (content: string) => void;
+}
+
+function EditComment({ initialContent, onCancel, onSave }: EditCommentProps) {
+  const [content, setContent] = useState(initialContent);
+  return (
+    <>
+      <TextArea value={content} onChange={(e) => setContent(e.target.value)}>
+        {content}
+      </TextArea>
+      <EditCommentButtonGroup>
+        <Button onClick={onCancel}>Cancel</Button>
+        <Button onClick={() => onSave(content)}>Update</Button>
+      </EditCommentButtonGroup>
+    </>
   );
 }
 
@@ -97,6 +156,8 @@ const ReplyingTo = styled("a", styles.replyingTo);
 const MobileActions = styled("div", styles.mobileActions);
 const DesktopOnly = styled("div", styles.desktopOnly);
 const ActionButtonIcon = styled("div", styles.actionButtonIcon);
+const TextArea = styled("textarea", styles.textArea);
+const EditCommentButtonGroup = styled("div", styles.editCommentButtonGroup);
 
 interface ActionButtonProps extends UnstyledButtonProps {
   text: string;

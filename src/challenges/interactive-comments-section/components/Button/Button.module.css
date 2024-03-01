@@ -1,0 +1,15 @@
+.button {
+    padding-block: 16px;
+    min-width: calc(100rem / 16);
+    color: var(--color-white);
+    text-align: center;
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    background-color: var(--color-primary-blue);
+    text-transform: uppercase;
+    border-radius: 6px;
+
+    &:active {
+        background-color: var(--color-primary-light-blue);
+    }
+}

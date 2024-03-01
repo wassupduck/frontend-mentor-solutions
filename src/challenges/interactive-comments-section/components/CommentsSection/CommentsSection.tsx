@@ -1,6 +1,6 @@
 import styles from "./CommentsSection.module.css";
 
-import Comment from "../Comment";
+import { CommentByCurrentUser, CommentByOtherUser } from "../Comment";
 
 import { COMMENTS, CURRENT_USER } from "../../data";
 import styled from "../../../../styled";
@@ -10,7 +10,7 @@ export default function CommentsSection() {
   return (
     <section className={styles.commentColumn}>
       {COMMENTS.map((comment) => (
-        <CommentWithReplies comment={comment} key={comment.id} />
+        <CommentWithReplies key={comment.id} comment={comment} />
       ))}
       <CreateComment currentUser={CURRENT_USER} onSubmit={() => {}} />
     </section>
@@ -20,22 +20,32 @@ export default function CommentsSection() {
 function CommentWithReplies({ comment }: { comment: (typeof COMMENTS)[0] }) {
   return (
     <>
-      <Comment
-        comment={comment}
-        byCurrentUser={comment.user.username === CURRENT_USER.username}
-      />
+      {comment.user.username === CURRENT_USER.username ? (
+        <CommentByCurrentUser
+          comment={comment}
+          onDelete={() => {}}
+          onUpdate={() => {}}
+        />
+      ) : (
+        <CommentByOtherUser comment={comment} onReply={() => {}} />
+      )}
       {comment.replies.length > 0 && (
         <Replies className={styles.commentColumn}>
-          {comment.replies.map((comment) => (
-            <Comment
-              key={comment.id}
-              comment={comment}
-              byCurrentUser={comment.user.username === CURRENT_USER.username}
-            />
-          ))}
+          {comment.replies.map((comment) =>
+            comment.user.username === CURRENT_USER.username ? (
+              <CommentByCurrentUser
+                comment={comment}
+                onDelete={() => {}}
+                onUpdate={() => {}}
+              />
+            ) : (
+              <CommentByOtherUser comment={comment} onReply={() => {}} />
+            )
+          )}
         </Replies>
       )}
     </>
   );
 }
+
 const Replies = styled("div", styles.replies);

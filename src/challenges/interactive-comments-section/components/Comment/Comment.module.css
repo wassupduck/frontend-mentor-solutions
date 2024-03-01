@@ -66,6 +66,11 @@
     &:active {
         color: var(--action-button-active-color);
     }
+
+    &:disabled {
+        color: var(--action-button-active-color);
+        cursor: unset;
+    }
 }
 
 .action-button-icon {
@@ -77,6 +82,10 @@
     background-color: var(--action-button-color);
 
     .action-button:active & {
+        background-color: var(--action-button-active-color);
+    }
+
+    .action-button:disabled & {
         background-color: var(--action-button-active-color);
     }
 }
@@ -116,4 +125,24 @@
     @media mobileAndSmaller {
         display: none;
     }
+}
+
+.update-button {
+    align-self: flex-end;
+}
+
+.text-area {
+    min-height: 96px;
+    padding: 16px 24px;
+    border: 1px solid var(--color-neutral-light-grey);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--color-neutral-dark-blue);
+    resize: vertical;
+}
+
+.edit-comment-button-group {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
 }
