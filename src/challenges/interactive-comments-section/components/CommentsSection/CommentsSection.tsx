@@ -34,12 +34,17 @@ function CommentWithReplies({ comment }: { comment: (typeof COMMENTS)[0] }) {
           {comment.replies.map((comment) =>
             comment.user.username === CURRENT_USER.username ? (
               <CommentByCurrentUser
+                key={comment.id}
                 comment={comment}
                 onDelete={() => {}}
                 onUpdate={() => {}}
               />
             ) : (
-              <CommentByOtherUser comment={comment} onReply={() => {}} />
+              <CommentByOtherUser
+                key={comment.id}
+                comment={comment}
+                onReply={() => {}}
+              />
             )
           )}
         </Replies>

@@ -3,8 +3,6 @@ const AVATARS = import.meta.glob("./assets/images/avatars/*", {
   as: "url",
 });
 
-console.log(AVATARS);
-
 export const CURRENT_USER = {
   image: {
     png: AVATARS["./assets/images/avatars/image-juliusomo.png"],
