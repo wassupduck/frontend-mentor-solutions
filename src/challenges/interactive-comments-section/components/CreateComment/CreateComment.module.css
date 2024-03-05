@@ -19,17 +19,21 @@
     width: 44px;
 }
 
-.text-area {
+.text-area-wrapper {
     flex: 1;
+
+    @media mobileAndSmaller {
+        min-width: 100%;
+        order: -1;
+    }
+}
+
+.text-area {
+    width: 100%;
     min-height: 96px;
     padding: 16px 24px;
     border: 1px solid var(--color-neutral-light-grey);
     border-radius: 6px;
     cursor: pointer;
     color: var(--color-neutral-dark-blue);
-
-    @media mobileAndSmaller {
-        min-width: 100%;
-        order: -1;
-    }
 }

@@ -1,35 +1,48 @@
 import styles from "./CreateComment.module.css";
 import styled from "../../../../styled";
 import Button from "../Button";
+import VisuallyHidden from "../../../../components/VisuallyHidden";
 
 export interface CreateCommentProps {
-  currentUser: {
-    image: {
-      png: string;
-      webp: string;
-    };
+  currentUserImage: {
+    png: string;
+    webp: string;
   };
   isReply?: boolean;
-  onSubmit: () => void;
+  onSubmit: (commentContent: string) => void;
 }
 
 export default function CreateComment({
-  currentUser,
+  currentUserImage,
   isReply = false,
   onSubmit,
 }: CreateCommentProps) {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
+    const target = e.target as typeof e.target & {
+      commentContent: { value: string };
+    };
+
+    onSubmit(target.commentContent.value);
+  };
+
   return (
-    <Wrapper>
+    <Wrapper method="post" onSubmit={handleSubmit}>
       <UserProfileImage>
-        <source srcSet={currentUser.image.webp} />
-        <img src={currentUser.image.png} alt="you're profile image" />
+        <source srcSet={currentUserImage.webp} />
+        <img src={currentUserImage.png} alt="You're profile image" />
       </UserProfileImage>
-      <TextArea placeholder="Add a comment..." />
-      <Button onClick={onSubmit}>{isReply ? "Reply" : "Send"}</Button>
+      <TextAreaWrapper>
+        <VisuallyHidden>Write your comment:</VisuallyHidden>
+        <TextArea name="commentContent" placeholder="Add a comment..." />
+      </TextAreaWrapper>
+      <Button type="submit">{isReply ? "Reply" : "Send"}</Button>
     </Wrapper>
   );
 }
 
-const Wrapper = styled("div", styles.wrapper);
+const Wrapper = styled("form", styles.wrapper);
 const UserProfileImage = styled("picture", styles.userProfileImage);
+const TextAreaWrapper = styled("label", styles.textAreaWrapper);
 const TextArea = styled("textarea", styles.textArea);

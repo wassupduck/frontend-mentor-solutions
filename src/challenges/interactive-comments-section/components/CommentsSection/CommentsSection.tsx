@@ -12,7 +12,12 @@ export default function CommentsSection() {
       {COMMENTS.map((comment) => (
         <CommentWithReplies key={comment.id} comment={comment} />
       ))}
-      <CreateComment currentUser={CURRENT_USER} onSubmit={() => {}} />
+      <CreateComment
+        currentUserImage={CURRENT_USER.image}
+        onSubmit={(commentContent) => {
+          console.log(commentContent);
+        }}
+      />
     </section>
   );
 }
