@@ -5,7 +5,7 @@ import postcssReporter from "postcss-reporter";
 
 export default {
   plugins: [
-    stylelint(),
+    stylelint,
     autoprefixer,
     postcssPresetEnv,
     postcssReporter({ clearReportedMessages: true }),
