@@ -5,20 +5,39 @@ import { CommentByCurrentUser, CommentByOtherUser } from "../Comment";
 import { COMMENTS, CURRENT_USER } from "../../data";
 import styled from "../../../../styled";
 import CreateComment from "../CreateComment";
+import { useState } from "react";
 
 export default function CommentsSection() {
+  const [comments, setComments] = useState(COMMENTS);
+
+  const handleCreateComment = (commentContent: string) => {
+    const generateId = () => Math.floor(Math.random() * 100000);
+    setComments([
+      ...comments,
+      {
+        id: generateId(),
+        content: commentContent,
+        createdAt: "Today",
+        score: 0,
+        user: {
+          image: { ...CURRENT_USER.image },
+          username: CURRENT_USER.username,
+        },
+        replies: [],
+      },
+    ]);
+  };
+
   return (
-    <section className={styles.commentColumn}>
-      {COMMENTS.map((comment) => (
+    <Wrapper>
+      {comments.map((comment) => (
         <CommentWithReplies key={comment.id} comment={comment} />
       ))}
       <CreateComment
         currentUserImage={CURRENT_USER.image}
-        onSubmit={(commentContent) => {
-          console.log(commentContent);
-        }}
+        onSubmit={handleCreateComment}
       />
-    </section>
+    </Wrapper>
   );
 }
 
@@ -58,4 +77,5 @@ function CommentWithReplies({ comment }: { comment: (typeof COMMENTS)[0] }) {
   );
 }
 
+const Wrapper = styled("section", styles.commentColumn);
 const Replies = styled("div", styles.replies);
