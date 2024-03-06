@@ -10,6 +10,7 @@ import deleteIconUrl from "../../assets/images/icon-delete.svg";
 import { UnstyledButtonProps } from "../../../../components/UnstyledButton/UnstyledButton";
 import { useState } from "react";
 import Button from "../Button";
+import { Vote } from "../../types";
 
 export interface CommentBaseProps {
   comment: {
@@ -25,6 +26,7 @@ export interface CommentBaseProps {
       };
       username: string;
     };
+    currentUserVote: Vote | null;
   };
   isByCurrentUser: boolean;
 }
@@ -38,6 +40,7 @@ export interface CommentByCurrentUserProps extends CommentBaseProps {
 export interface CommentByOtherUserProps extends CommentBaseProps {
   isByCurrentUser: false;
   onReply: () => void;
+  onChangeVote: (vote: Vote | null) => void;
 }
 
 export type CommentProps = CommentByCurrentUserProps | CommentByOtherUserProps;
@@ -69,12 +72,8 @@ export function Comment({ comment, ...props }: CommentProps) {
     <CommentVotes
       voteCount={comment.score}
       canVote={!props.isByCurrentUser}
-      onUpVoteClick={() => {
-        console.log("up vote");
-      }}
-      onDownVoteClick={() => {
-        console.log("down vote");
-      }}
+      currentVote={comment.currentUserVote ?? undefined}
+      {...(props.isByCurrentUser ? {} : { onChangeVote: props.onChangeVote })}
     />
   );
 

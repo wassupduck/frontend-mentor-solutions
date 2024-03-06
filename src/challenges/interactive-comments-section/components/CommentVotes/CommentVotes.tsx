@@ -6,26 +6,27 @@ import plusIconUrl from "../../assets/images/icon-plus.svg";
 import minusIconUrl from "../../assets/images/icon-minus.svg";
 import styled from "../../../../styled";
 import clsx from "clsx";
-import { Vote } from "./types";
+import { Vote } from "../../types";
 
 export interface CommentVotesProps {
   voteCount: number;
   canVote: boolean;
   currentVote?: Vote;
-  onUpVoteClick: () => void;
-  onDownVoteClick: () => void;
+  onChangeVote?: (vote: Vote | null) => void;
 }
 
 export default function CommentVotes({
   voteCount,
   canVote,
   currentVote,
-  onUpVoteClick,
-  onDownVoteClick,
+  onChangeVote,
 }: CommentVotesProps) {
+  const handleChangeVote = (vote: Vote) =>
+    onChangeVote && onChangeVote(vote === currentVote ? null : vote);
+
   return (
     <Wrapper>
-      <VoteButton onClick={onUpVoteClick} disabled={!canVote}>
+      <VoteButton onClick={() => handleChangeVote(Vote.UP)} disabled={!canVote}>
         <VoteButtonIcon
           style={{
             maskImage: `url(${plusIconUrl})`,
@@ -35,7 +36,10 @@ export default function CommentVotes({
         />
       </VoteButton>
       <Votes>{voteCount}</Votes>
-      <VoteButton onClick={onDownVoteClick} disabled={!canVote}>
+      <VoteButton
+        onClick={() => handleChangeVote(Vote.DOWN)}
+        disabled={!canVote}
+      >
         <VoteButtonIcon
           style={{
             maskImage: `url(${minusIconUrl})`,

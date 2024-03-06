@@ -1,3 +1,5 @@
+import { Comment, Vote } from "./types";
+
 const AVATARS = import.meta.glob("./assets/images/avatars/*", {
   eager: true,
   as: "url",
@@ -11,7 +13,7 @@ export const CURRENT_USER = {
   username: "juliusomo",
 };
 
-export const COMMENTS = [
+export const COMMENTS: Comment[] = [
   {
     id: 1,
     content:
@@ -26,6 +28,7 @@ export const COMMENTS = [
       username: "amyrobson",
     },
     replies: [],
+    currentUserVote: Vote.UP,
   },
   {
     id: 2,
@@ -55,6 +58,7 @@ export const COMMENTS = [
           },
           username: "ramsesmiron",
         },
+        currentUserVote: Vote.DOWN,
       },
       {
         id: 4,
@@ -70,7 +74,9 @@ export const COMMENTS = [
           },
           username: "juliusomo",
         },
+        currentUserVote: null,
       },
     ],
+    currentUserVote: null,
   },
 ];
