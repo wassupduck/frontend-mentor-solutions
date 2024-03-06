@@ -68,8 +68,13 @@ export function Comment({ comment, ...props }: CommentProps) {
   const commentVotes = (
     <CommentVotes
       voteCount={comment.score}
-      onUpVoteClick={() => {}}
-      onDownVoteClick={() => {}}
+      canVote={!props.isByCurrentUser}
+      onUpVoteClick={() => {
+        console.log("up vote");
+      }}
+      onDownVoteClick={() => {
+        console.log("down vote");
+      }}
     />
   );
 

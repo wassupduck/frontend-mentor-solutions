@@ -10,6 +10,7 @@ import { Vote } from "./types";
 
 export interface CommentVotesProps {
   voteCount: number;
+  canVote: boolean;
   currentVote?: Vote;
   onUpVoteClick: () => void;
   onDownVoteClick: () => void;
@@ -17,13 +18,14 @@ export interface CommentVotesProps {
 
 export default function CommentVotes({
   voteCount,
+  canVote,
   currentVote,
   onUpVoteClick,
   onDownVoteClick,
 }: CommentVotesProps) {
   return (
     <Wrapper>
-      <VoteButton onClick={onUpVoteClick}>
+      <VoteButton onClick={onUpVoteClick} disabled={!canVote}>
         <VoteButtonIcon
           style={{
             maskImage: `url(${plusIconUrl})`,
@@ -33,7 +35,7 @@ export default function CommentVotes({
         />
       </VoteButton>
       <Votes>{voteCount}</Votes>
-      <VoteButton onClick={onDownVoteClick}>
+      <VoteButton onClick={onDownVoteClick} disabled={!canVote}>
         <VoteButtonIcon
           style={{
             maskImage: `url(${minusIconUrl})`,

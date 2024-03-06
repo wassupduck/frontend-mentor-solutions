@@ -38,11 +38,11 @@
         background-color: var(--color-primary-blue);
     }
 
-    .vote-button:active &:not(.active) {
+    .vote-button:not(:disabled):active &:not(.active) {
         background-color: var(--color-primary-blue);
     }
 
-    .vote-button:active &.active {
+    .vote-button:not(:disabled):active &.active {
         background-color: var(--color-primary-light-blue);
     }
 }
