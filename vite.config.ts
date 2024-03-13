@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   base: "/frontend-mentor-solutions/",
   plugins: [react()],
-  css: { modules: { localsConvention: "camelCaseOnly" } },
+  css: { modules: { localsConvention: "camelCase" } },
 });
