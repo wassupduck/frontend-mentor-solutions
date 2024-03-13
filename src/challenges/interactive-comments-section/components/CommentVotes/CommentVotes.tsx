@@ -29,8 +29,8 @@ export default function CommentVotes({
       <VoteButton onClick={() => handleChangeVote(Vote.UP)} disabled={!canVote}>
         <VoteButtonIcon
           style={{
-            maskImage: `url(${plusIconUrl})`,
-            WebkitMaskImage: `url(${plusIconUrl})`,
+            maskImage: `url("${plusIconUrl}")`,
+            WebkitMaskImage: `url("${plusIconUrl}")`,
           }}
           className={clsx(currentVote === Vote.UP && styles.active)}
         />
@@ -42,8 +42,8 @@ export default function CommentVotes({
       >
         <VoteButtonIcon
           style={{
-            maskImage: `url(${minusIconUrl})`,
-            WebkitMaskImage: `url(${minusIconUrl})`,
+            maskImage: `url("${minusIconUrl}")`,
+            WebkitMaskImage: `url("${minusIconUrl}")`,
           }}
           className={clsx(
             styles.downVoteButtonIcon,

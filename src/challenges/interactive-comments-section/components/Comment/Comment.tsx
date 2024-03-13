@@ -193,8 +193,8 @@ function ActionButton({
     >
       <ActionButtonIcon
         style={{
-          maskImage: `url(${iconUrl})`,
-          WebkitMaskImage: `url(${iconUrl})`,
+          maskImage: `url("${iconUrl}")`,
+          WebkitMaskImage: `url("${iconUrl}")`,
         }}
       />
       <p>{text}</p>
